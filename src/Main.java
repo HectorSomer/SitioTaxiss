@@ -1,4 +1,4 @@
-import models.*;
+import  models.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Scanner;
@@ -268,8 +268,13 @@ public class Main {
             key.nextLine();
             posicion= objetoChofer.busquedaChofer(idChofer);
             if(posicion!=-1){
-               chofer=objetoChofer.asignarChofer(posicion);
-              banderaChofer=true;
+              if(!objetoChAsignados.buscarChoferAsignado(idChofer)){
+                  chofer=objetoChofer.asignarChofer(posicion);
+                  banderaChofer=true;
+              }
+              else {
+                  System.out.println("Este chofer ya está asignado");
+              }
             }
             else if(idChofer==0){
                 System.out.println("Ha salido de la opcion");
@@ -286,8 +291,13 @@ public class Main {
             idUnidad= key.nextInt();
             posicionDos = objetoUnidad.busquedaUnidad(idUnidad);
             if (posicionDos!=-1){
-                unidad=objetoUnidad.asignarUnidad(posicionDos);
-                banderaUnidad=true;
+                if (!objetoChAsignados.buscarUnidadAsignada(idUnidad)){
+                    unidad=objetoUnidad.asignarUnidad(posicionDos);
+                    banderaUnidad=true;
+                }
+                else {
+                    System.out.println("Esta unidad ya está asignada");
+                }
             }
             else if (idUnidad==0){
                 System.out.println("Ha salido de la opcion");
